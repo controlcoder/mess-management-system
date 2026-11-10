@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # IIIT Bhubaneswar Mess Management
 
 IIIT Bhubaneswar Mess Management is a full-stack hostel mess operations platform that helps students manage meal opt-outs, points, and extra-item redemptions while giving administrators a clean dashboard for menus, attendance, headcount, redeemables, and token fulfillment.
@@ -73,3 +74,7 @@ Admin features:
 - Manage weekly menus, extra redeemables, and operational dashboards
 - Track attendance, headcount, and recent activity across meals
 - View active redemption tokens and mark them fulfilled at the counter
+=======
+# mess-management-system
+This is the mess management project of IIIT Bhubaneswar.
+>>>>>>> 822f2a359f10c79cbfc44b33cd74065cc451d5a2
