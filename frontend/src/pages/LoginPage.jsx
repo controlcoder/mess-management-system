@@ -37,11 +37,13 @@ export default function LoginPage() {
     weekday: "long",
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   });
 
   if (user) {
-    return <Navigate to={user.role === "ADMIN" ? "/admin" : "/student"} replace />;
+    return (
+      <Navigate to={user.role === "ADMIN" ? "/admin" : "/student"} replace />
+    );
   }
 
   async function handleSubmit(event) {
@@ -72,6 +74,13 @@ export default function LoginPage() {
           Streamline your mess experience with smarter meal planning, easy
           management, and hassle-free dining.
         </p>
+
+        <h2>Use this dummy data for login:</h2>
+        <p className="text-sm">
+          Student Id - b423001, Student Pass - student123
+        </p>
+
+        <p className="text-sm">Admin Id - admin, Admin Pass - admin123</p>
 
         <hr className="my-6 border-brand-ink/10" />
 
