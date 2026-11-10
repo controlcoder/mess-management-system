@@ -1,7 +1,9 @@
 // Menu source: KUBER HEALTH FOOD AND ALLIED SERVICES PVT LTD
 // IIIT Bhubaneswar Mess Menu - March 2026 (repeating weekly template)
 import "dotenv/config";
-console.log(process.env.DATABASE_URL);
+// Must be imported before any date calculation so seeding uses the same
+// timezone as the API (IST), regardless of the host's timezone.
+import "../src/config/timezone.js";
 import bcrypt from "bcrypt";
 import {
   PrismaClient,
@@ -17,7 +19,7 @@ import {
 const prisma = new PrismaClient();
 
 const BRANCHES = [Branch.CSE, Branch.CE, Branch.IT, Branch.ETC, Branch.EEE];
-const DEFAULT_BATCHES = [2022, 2023, 2024, 2025];
+const DEFAULT_BATCHES = [2023, 2024, 2025, 2026];
 const FIRST_NAMES = [
   "Aarav",
   "Aditi",
@@ -167,11 +169,16 @@ function mealDeadline(mealDate, mealType) {
 
 function buildRollNumber(batchYear, branch, serial) {
   let branchId = 4;
+
   if (branch === Branch.CSE) branchId = 1;
   else if (branch === Branch.CE) branchId = 5;
   else if (branch === Branch.ETC) branchId = 2;
   else if (branch === Branch.EEE) branchId = 3;
-  return `b${branchId}${batchYear}${serial}`;
+
+  const year = String(batchYear).slice(-2);
+  const paddedSerial = String(serial).padStart(3, "0");
+
+  return `b${branchId}${year}${paddedSerial}`;
 }
 
 function buildStudentName(batchYear, branch, serial, gender) {

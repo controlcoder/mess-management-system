@@ -76,7 +76,6 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   const parsed = registerSchema.safeParse(req.body);
-  console.log(parsed);
   if (!parsed.success) {
     return res.status(400).json({
       message: "Invalid signup details. Check name, roll number, and password.",
